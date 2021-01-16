@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from './axios';
 import './App.css';
+import { getCards } from './actions/posts';
 import Header from 'components/Header';
+import { useDispatch } from 'react-redux';
 function App() {
+  const dispatch = useDispatch();
   const [array, setArray] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const req = await axios.get('/app/getCards');
-      console.log(req.data);
-      setArray(req.data);
-    };
-    fetchData();
+    dispatch();
+    // const fetchData = async () => {
+    //   const req = await axios.get('/app/getCards');
+    //   console.log(req.data);
+    //   setArray(req.data);
+    // };
+    // fetchData();
   }, []);
   return (
     <div className="App">
@@ -19,7 +23,7 @@ function App() {
       {array.map((val, idx) => {
         return (
           <div key={idx}>
-            <Header>{val.name}</Header>
+            <Header />
           </div>
         );
       })}
